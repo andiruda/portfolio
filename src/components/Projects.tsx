@@ -27,12 +27,6 @@ const projects = [
     tags: ["AWS Serverless", "Generative AI", "Event-Driven"], 
     url: "https://timetales.ai" 
   },
-  { 
-    title: "Infrastructure as Code — Portfolio Deployment", 
-    description: "Next.js site deployed to AWS ECS via Terraform. Full IaC: ECR, ECS, ALB, Route 53, ACM. GitHub Actions CI/CD. Demonstrates infrastructure automation and cloud deployment ownership.", 
-    tags: ["Terraform", "AWS ECS", "Docker", "CI/CD"], 
-    url: "https://github.com/andiruda/andiruda.com-v2" 
-  },
 ];
 
 export default function Projects() {
