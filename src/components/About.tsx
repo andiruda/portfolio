@@ -5,72 +5,64 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-white/5 py-24">
+    <section id="about" className="border-t border-[#e2e8f0] py-24 bg-[#fafafa]">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+        <motion.h2 
+          className="text-xs font-medium tracking-widest uppercase text-[#1e40af] mb-2"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
-          <h2 className="text-amber-400/90 text-sm font-medium tracking-widest uppercase mb-2">
-            About
-          </h2>
-          <h3 className="text-3xl font-bold text-[#e6edf3] sm:text-4xl">
-            A bit about me
-          </h3>
-        </motion.div>
+          Leadership & Platform Strategy
+        </motion.h2>
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <motion.div 
             className="flex justify-center lg:justify-start"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
           >
             <Image
               src="/andi.png"
               alt="Andi Ruda"
-              width={280}
-              height={280}
-              className="rounded-2xl object-cover ring-1 ring-white/10 w-full max-w-[280px] aspect-square shadow-2xl shadow-black/50"
+              width={260}
+              height={260}
+              className="rounded-lg object-cover w-full max-w-[260px] aspect-square ring-1 ring-[#e2e8f0]"
             />
           </motion.div>
           <motion.div 
             className="space-y-6"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <p className="text-[#8b949e] leading-relaxed text-lg">
-              I&apos;m Andi—an infrastructure engineer who gets excited about turning 
-              complex cloud setups into reliable, repeatable code. I specialize in 
-              Infrastructure as Code (IaC) and love helping teams ship faster without 
-              the chaos.
+            <p className="text-[#64748b] leading-relaxed">
+              Andi Ruda is a Senior Engineering Leader specializing in large-scale AWS serverless 
+              architecture and distributed systems. As Manager of Software Engineering at Rhythm 
+              Software, he leads teams responsible for a 500+ microservice multi-tenant SaaS 
+              ecosystem operating in event-driven cloud environments.
             </p>
-            <p className="text-[#8b949e] leading-relaxed">
-              From multi-region AWS architectures to GitOps-driven Kubernetes deployments, 
-              I&apos;ve built systems that scale. I care about security, cost, and making 
-              infrastructure feel like a product—not a fire drill.
+            <p className="text-[#64748b] leading-relaxed">
+              He architects and oversees infrastructure built on AWS Lambda, DynamoDB, SNS/SQS, 
+              Step Functions, API Gateway, and Infrastructure as Code. His leadership spans 
+              fintech integrations (Stripe, Payrix), CI/CD platform ownership, operational 
+              reliability, and compliance-sensitive SaaS systems.
+            </p>
+            <p className="text-[#64748b] leading-relaxed">
+              His focus is building engineering teams that deliver scalable systems with 
+              long-term architectural integrity, cost discipline, and operational excellence.
             </p>
             <div className="flex flex-wrap gap-3 pt-4">
-              {["Cloud & IaC", "Terraform", "Kubernetes", "CI/CD", "Cost optimization"].map((tag, i) => (
-                <motion.span
+              {["Platform Engineering", "Distributed Systems", "Fintech Infrastructure", "Cloud Cost Optimization", "Infrastructure as Code", "Operational Excellence"].map((tag) => (
+                <span
                   key={tag}
-                  className="rounded-full bg-white/5 px-4 py-1.5 text-sm text-[#8b949e] border border-white/5"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.05 }}
-                  whileHover={{ 
-                    borderColor: "rgba(245, 158, 11, 0.3)", 
-                    color: "#e6edf3",
-                    scale: 1.05 
-                  }}
+                  className="rounded border border-[#e2e8f0] bg-white px-3 py-1 text-xs text-[#64748b]"
                 >
                   {tag}
-                </motion.span>
+                </span>
               ))}
             </div>
           </motion.div>

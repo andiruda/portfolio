@@ -2,87 +2,50 @@
 
 import { motion } from "framer-motion";
 
-const skillCategories = [
-  { title: "Infrastructure as Code", skills: ["Terraform", "Pulumi", "CloudFormation", "Ansible", "Terragrunt"] },
-  { title: "Cloud Platforms", skills: ["AWS", "GCP", "Azure", "DigitalOcean", "Vercel"] },
-  { title: "Containers & Orchestration", skills: ["Kubernetes", "Docker", "Helm", "EKS", "ECS"] },
-  { title: "CI/CD & DevOps", skills: ["GitHub Actions", "GitLab CI", "Jenkins", "ArgoCD", "Flux"] },
-  { title: "Observability", skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "ELK"] },
-  { title: "Scripting & Languages", skills: ["Python", "Bash", "Go", "TypeScript", "HCL"] },
+const focusAreas = [
+  { title: "Platform Engineering", items: ["500+ microservice ecosystems", "Multi-tenant SaaS", "Event-driven architecture"] },
+  { title: "Distributed Systems", items: ["Lambda", "SNS/SQS", "Step Functions", "Reliability engineering"] },
+  { title: "Fintech Infrastructure", items: ["Stripe", "Payrix", "Payment orchestration", "Compliance"] },
+  { title: "Cloud & Infrastructure", items: ["AWS Serverless", "CloudFormation", "CDK", "Cost optimization"] },
+  { title: "Operational Excellence", items: ["CI/CD ownership", "SOC2", "Infrastructure automation"] },
 ];
-
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-};
 
 export default function Skills() {
   return (
-    <section id="skills" className="border-t border-white/5 py-24">
+    <section id="skills" className="border-t border-[#e2e8f0] py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+        <motion.h2 
+          className="text-xs font-medium tracking-widest uppercase text-[#1e40af] mb-2"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
-          <h2 className="text-amber-400/90 text-sm font-medium tracking-widest uppercase mb-2">
-            Skills
-          </h2>
-          <h3 className="text-3xl font-bold text-[#e6edf3] sm:text-4xl">
-            What I work with
-          </h3>
-          <p className="mt-4 max-w-2xl text-[#8b949e]">
-            Tools and technologies I use day to day.
-          </p>
-        </motion.div>
-        <motion.div 
-          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {skillCategories.map((category) => (
+          Strategic Focus Areas
+        </motion.h2>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {focusAreas.map((area, i) => (
             <motion.div
-              key={category.title}
-              variants={item}
-              className="rounded-2xl border border-white/5 bg-white/[0.02] p-6"
-              whileHover={{ 
-                borderColor: "rgba(245, 158, 11, 0.25)", 
-                backgroundColor: "rgba(255, 255, 255, 0.04)",
-                y: -4,
-                transition: { duration: 0.2 }
-              }}
+              key={area.title}
+              className="border border-[#e2e8f0] bg-white p-6 shadow-sm"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
             >
-              <h4 className="font-medium text-[#e6edf3] mb-4">
-                {category.title}
+              <h4 className="font-semibold text-[#0f172a] mb-3 text-sm">
+                {area.title}
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-lg bg-white/5 px-3 py-1 text-sm text-[#8b949e]"
-                  >
-                    {skill}
-                  </span>
+              <div className="space-y-1">
+                {area.items.map((item) => (
+                  <div key={item} className="text-sm text-[#64748b]">
+                    {item}
+                  </div>
                 ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

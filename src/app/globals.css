@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d1117;
-  --foreground: #e6edf3;
-  --accent: #f59e0b;
-  --accent-muted: #d97706;
-  --border: rgba(255, 255, 255, 0.08);
+  --background: #ffffff;
+  --background-alt: #fafafa;
+  --foreground: #0f172a;
+  --foreground-muted: #64748b;
+  --accent: #1e40af;
+  --accent-hover: #1e3a8a;
+  --border: #e2e8f0;
 }
 
 @theme inline {
@@ -26,16 +28,5 @@ body {
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.3);
-}
-
-/* Animated gradient text */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animate-gradient {
-  background-size: 200% auto;
-  animation: gradient-shift 4s ease-in-out infinite;
+  background: rgba(30, 64, 175, 0.15);
 }

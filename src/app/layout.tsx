@@ -21,12 +21,12 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Andi Ruda | Infrastructure Engineer",
-  description: "Infrastructure as Code specialist. Terraform, AWS, Kubernetes, CI/CD. Building scalable cloud infrastructure.",
-  keywords: ["Andi Ruda", "IaC", "Terraform", "AWS", "DevOps", "Infrastructure", "Cloud"],
+  title: "Andi Ruda | Senior Engineering Leader",
+  description: "Engineering leader building scalable cloud platforms. AWS serverless, distributed systems, multi-tenant SaaS. Manager of Software Engineering at Rhythm Software.",
+  keywords: ["Andi Ruda", "Senior Engineering Manager", "Platform Engineering", "AWS Serverless", "Distributed Systems", "Fintech"],
   openGraph: {
-    title: "Andi Ruda | Infrastructure Engineer",
-    description: "Infrastructure as Code specialist building scalable cloud infrastructure.",
+    title: "Andi Ruda | Senior Engineering Leader",
+    description: "Engineering leader specializing in AWS serverless, distributed systems, and platform engineering at scale.",
   },
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${syne.variable} antialiased bg-[#0d1117] text-[#e6edf3]`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${syne.variable} antialiased bg-white text-[#0f172a]`}
       >
         {children}
       </body>
