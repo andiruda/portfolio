@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and fill in your values
+
+aws_region           = "us-east-1"
+domain_name          = "andiruda.com"
+acm_certificate_arn  = "arn:aws:acm:us-east-1:ACCOUNT_ID:certificate/CERT_ID"
+
+# Set to false if you already have an A record for the root domain
+# create_root_record = false
+
+# Optional: if Terraform can't find your zone by domain, specify the zone ID
+# route53_zone_id = "Z0123456789ABCDEFGHIJ"
