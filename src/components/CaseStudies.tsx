@@ -4,26 +4,28 @@ import { motion } from "framer-motion";
 
 const caseStudies = [
   {
-    title: "Multi-Tenant Platform Scale & Cost Optimization",
-    context: "Rhythm Software — Platform Engineering",
-    challenge: "Legacy architecture was scaling linearly with tenant count, driving unsustainable infrastructure costs.",
-    approach: "Led a cross-team initiative to refactor event-driven patterns, implement tenant-aware caching, and consolidate shared services.",
-    metrics: [
-      { value: "~40%", label: "Infrastructure cost reduction" },
-      { value: "99.7%", label: "Uptime over 12 months" },
-      { value: "3x", label: "Throughput improvement" },
+    title: "Modernizing a Shared AWS SDK Layer Across a Distributed Microservice Ecosystem",
+    subtitle: "Refactoring a shared AWS SDK layer to AWS SDK v3 while preserving backwards compatibility across many microservices and improving reliability under rate limits.",
+    description: "Modernized a shared internal services proxy layer that wrapped AWS SDK v2 across a large, distributed microservice ecosystem. The existing implementation made it hard to reason about retries, error handling, and long-term maintainability as the platform scaled.\n\nI designed and led the refactor to AWS SDK v3 while ensuring downstream microservices did not need to be rewritten. This included introducing a cleaner wrapper architecture, standardizing retry behavior with exponential backoff, and tightening error handling patterns so services behaved consistently under partial failure or rate-limited conditions.\n\nThe migration was rolled out incrementally to avoid production disruption, with careful coordination across teams and environments.",
+    bullets: [
+      "Refactored shared AWS SDK layer from v2 to v3 without requiring changes in consuming services",
+      "Standardized retry and error-handling patterns across many microservices",
+      "Improved reliability under throttling and transient AWS service failures",
+      "Reduced long-term maintenance burden and enabled better observability and future enhancements",
     ],
+    tags: ["AWS", "Serverless", "Distributed Systems", "SDK Modernization", "Reliability"],
   },
   {
-    title: "Fintech Payment Reliability & Compliance",
-    context: "Rhythm Software — Payment Platform",
-    challenge: "Payment orchestration across Stripe and Payrix required higher reliability and audit readiness for SOC2.",
-    approach: "Designed and implemented idempotent transaction flows, retry frameworks, and reconciliation pipelines with full audit trails.",
-    metrics: [
-      { value: "99.99%", label: "Payment success rate" },
-      { value: "<2min", label: "Reconciliation latency" },
-      { value: "100%", label: "Audit trail coverage" },
+    title: "Leading a Cross-System Fintech Token Migration & Reconciliation Initiative",
+    subtitle: "Orchestrated a payment token migration across Stripe and Payrix with automated reconciliation and zero customer-visible downtime.",
+    description: "Led a mission-critical initiative to migrate payment tokens across integrated fintech providers (Stripe and Payrix) while preserving transactional integrity and avoiding customer impact.\n\nThe existing token landscape was fragmented and carried real risk: failed payments, inconsistent data across systems, and painful manual reconciliation. I worked across engineering and product stakeholders to design a migration plan, define phases, and ensure auditability and rollback were built in from day one.\n\nI helped shape and oversee the implementation of automated reconciliation tooling, event-driven processes to track token and payment state, and monitoring to surface edge cases early. Throughout the rollout, I coordinated teams, validated results, and ensured we kept customer-facing impact at effectively zero.",
+    bullets: [
+      "Successfully completed payment token migration across Stripe and Payrix with no customer-visible downtime",
+      "Reduced manual reconciliation workload by introducing automated checks and reporting",
+      "Increased confidence in payment system integrity and traceability",
+      "Strengthened compliance posture around payment data handling and migrations",
     ],
+    tags: ["Fintech", "Stripe", "Payrix", "Payments", "Data Migration", "Reconciliation"],
   },
 ];
 
@@ -59,24 +61,30 @@ export default function CaseStudies() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <p className="text-xs font-medium tracking-widest uppercase text-[#1e40af] mb-2">
-                {study.context}
-              </p>
-              <h3 className="text-lg font-semibold text-[#0f172a] mb-4">
+              <h3 className="text-lg font-semibold text-[#0f172a] mb-2">
                 {study.title}
               </h3>
-              <p className="text-sm text-[#64748b] mb-2">
-                <span className="font-medium text-[#0f172a]">Challenge:</span> {study.challenge}
+              <p className="text-sm text-[#64748b] mb-4">
+                {study.subtitle}
               </p>
-              <p className="text-sm text-[#64748b] mb-6">
-                <span className="font-medium text-[#0f172a]">Approach:</span> {study.approach}
-              </p>
-              <div className="flex flex-wrap gap-8 pt-4 border-t border-[#e2e8f0]">
-                {study.metrics.map((m) => (
-                  <div key={m.label}>
-                    <span className="block text-2xl font-semibold text-[#1e40af]">{m.value}</span>
-                    <span className="text-sm text-[#64748b]">{m.label}</span>
-                  </div>
+              <div className="text-sm text-[#64748b] mb-6 space-y-3 whitespace-pre-line">
+                {study.description.split("\n\n").map((para, j) => (
+                  <p key={j}>{para}</p>
+                ))}
+              </div>
+              <ul className="space-y-2 pt-4 border-t border-[#e2e8f0]">
+                {study.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-2 text-sm text-[#64748b]">
+                    <span className="text-[#1e40af] shrink-0">•</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {study.tags.map((tag) => (
+                  <span key={tag} className="rounded border border-[#e2e8f0] bg-white px-2.5 py-0.5 text-xs text-[#64748b]">
+                    {tag}
+                  </span>
                 ))}
               </div>
             </motion.article>
