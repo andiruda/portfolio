@@ -8,28 +8,34 @@ A professional Infrastructure as Code portfolio site built with Next.js. Designe
 - **DevOps aesthetic**: Terminal-inspired design with GitHub-style dark theme
 - **Sections**: Hero, About, Skills, Projects, Contact
 - **Terraform examples**: IaC configs included in `/terraform`
-- **CI/CD**: GitHub Actions for build validation
+- **CI/CD**: GitHub Actions (CI on every push/PR; AWS deploy on `main` when configured)
 
 ## Deployment
 
-### Option 1: AWS ECS (IaC showcase)
+### Option 1: AWS static site — S3 + CloudFront + Route 53 + ACM (low cost)
 
-Deploy to AWS with Terraform—great for demonstrating cloud/infra skills.
+Next.js builds as a **static export** (`./out`). Terraform provisions a **private S3 bucket** (CloudFront **OAC**), **ACM** in `us-east-1`, **CloudFront** (`PriceClass_100` by default), and **Route 53** aliases for apex + `www`.
 
 ```bash
-# 1. Provision infrastructure
-cd terraform/ecs
+cd terraform/static-site
+cp terraform.tfvars.example terraform.tfvars
+# Edit domain_name / region if needed, then:
 terraform init
 terraform apply
-
-# 2. Add GitHub secrets (Settings → Secrets → Actions):
-#    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION,
-#    ECR_REPOSITORY (andiruda-portfolio), ECS_CLUSTER, ECS_SERVICE
-
-# 3. Push to main → auto-deploys via GitHub Actions
 ```
 
-See [terraform/ecs/README.md](terraform/ecs/README.md) for details.
+Copy Terraform outputs into GitHub **Actions** secrets:
+
+- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
+- `S3_STATIC_BUCKET` ← output `s3_bucket_name`
+- `CLOUDFRONT_DISTRIBUTION_ID` ← output `cloudfront_distribution_id`
+- Optional: `AWS_REGION` (default `us-east-1`)
+
+Pushes to `main` run [`.github/workflows/deploy-aws-static.yml`](.github/workflows/deploy-aws-static.yml) (`s3 sync` + CloudFront invalidation).
+
+Details and a minimal IAM policy for deploy credentials: [terraform/static-site/README.md](terraform/static-site/README.md).
+
+If apex/`www` still resolve to the old ALB, run **`terraform destroy`** in `terraform/ecs` (or remove those Route 53 records) **before** applying `static-site`, so Terraform can create the new CloudFront aliases without conflicts. Then destroy the ECS/ALB stack so you stop paying for Fargate, the ALB, and related public IPv4 usage.
 
 ### Option 2: Vercel (One-Click)
 
@@ -40,7 +46,11 @@ See [terraform/ecs/README.md](terraform/ecs/README.md) for details.
 
 Vercel auto-deploys on every push to `main`.
 
-### Option 3: Terraform-Managed Vercel
+### Option 3: AWS ECS + ALB (legacy, higher cost)
+
+The `terraform/ecs` stack is **not** updated for the static export workflow (this app no longer uses `output: "standalone"`). Keep it only if you intentionally maintain a separate container deployment. See [terraform/ecs/README.md](terraform/ecs/README.md).
+
+### Option 4: Terraform-Managed Vercel
 
 ```bash
 cd terraform/vercel
@@ -72,7 +82,8 @@ Open [http://localhost:3000](http://localhost:3000).
 │   ├── app/           # Next.js App Router
 │   └── components/   # React components
 ├── terraform/         # IaC (portfolio pieces)
-│   ├── ecs/          # AWS ECS deployment
+│   ├── static-site/  # S3 + CloudFront + ACM + Route 53
+│   ├── ecs/          # Legacy ECS/Fargate + ALB (optional)
 │   └── vercel/       # Vercel Terraform config
 ├── .github/workflows/ # CI pipeline
 └── vercel.json       # Vercel config

@@ -1,0 +1,49 @@
+# Deploy static export (./out) to S3 and invalidate CloudFront.
+# Secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_STATIC_BUCKET, CLOUDFRONT_DISTRIBUTION_ID
+# Optional: AWS_REGION (default us-east-1)
+name: Deploy to AWS (S3 + CloudFront)
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Sync site to S3
+        env:
+          BUCKET: ${{ secrets.S3_STATIC_BUCKET }}
+        run: |
+          test -n "$BUCKET" || (echo "Set GitHub secret S3_STATIC_BUCKET (Terraform output s3_bucket_name)" && exit 1)
+          aws s3 sync out/ "s3://${BUCKET}/" --delete
+
+      - name: Invalidate CloudFront cache
+        env:
+          DIST_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          test -n "$DIST_ID" || (echo "Set GitHub secret CLOUDFRONT_DISTRIBUTION_ID (Terraform output cloudfront_distribution_id)" && exit 1)
+          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"

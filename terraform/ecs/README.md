@@ -1,4 +1,6 @@
-# ECS Deployment
+# ECS Deployment (legacy)
+
+> **Note:** The app is configured for **static export** (`npm run build` → `./out`). For low-cost hosting, use **`terraform/static-site`** (S3 + CloudFront) instead. This ECS path expects a **Docker image built from the old `output: "standalone"`** Next.js config.
 
 Deploy the portfolio to AWS ECS (Fargate) with Terraform, using your existing ACM certificate and Route 53.
 

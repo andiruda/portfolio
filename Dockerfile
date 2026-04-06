@@ -1,3 +1,4 @@
+# Legacy ECS image: Next.js standalone server. The primary deployment is static export → S3 + CloudFront (see README).
 # Build stage
 FROM node:20-alpine AS builder
 
