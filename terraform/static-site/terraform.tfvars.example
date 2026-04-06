@@ -1,0 +1,18 @@
+# Copy to terraform.tfvars (gitignored) and adjust.
+
+aws_region    = "us-east-1"
+project_name  = "andiruda-portfolio"
+domain_name   = "andiruda.com"
+
+# Optional: if Terraform cannot find your public zone
+# route53_zone_id = "Z0123456789ABCDEFGHIJ"
+
+# Lowest-cost CloudFront footprint (US, Canada, Europe, Israel)
+cloudfront_price_class = "PriceClass_100"
+
+# Optional: fixed bucket name instead of generated default
+# s3_bucket_name = "my-unique-static-bucket"
+
+# DNS outside Route 53: set create_dns_records = false and pass a pre-validated cert:
+# create_dns_records   = false
+# acm_certificate_arn  = "arn:aws:acm:us-east-1:ACCOUNT:certificate/UUID"
