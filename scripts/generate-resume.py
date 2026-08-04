@@ -180,7 +180,7 @@ def build_resume() -> None:
         Paragraph("EXECUTIVE PROFILE", styles["Section"]),
         Paragraph(
             "Hands-on engineering leader with 15+ years building SaaS products, leading technical teams, and modernizing cloud platforms. "
-            "Currently leads a four-engineer team in a 500+ microservice, multi-tenant AWS environment. Brings people leadership and technical "
+            "Currently leads a four-engineer team for a 3.3M-user platform spanning 7.3K Lambda functions, 620 REST APIs, 29 Angular applications, and 500+ microservices. Brings people leadership and technical "
             "depth to embedded analytics, fintech migrations, serverless architecture, reliability, and automation. Former Director of Development "
             "and founder/product builder who turns ambiguous business needs into durable systems and shipped products.",
             styles["Body"],
@@ -192,7 +192,7 @@ def build_resume() -> None:
         "Lead a team of four engineers with responsibility for delivery, coaching, performance, technical direction, and cross-functional planning.",
         "Architected and hands-on delivered a secure, multi-tenant Omni BI platform, streaming data from hundreds of DynamoDB tables into a relational analytics layer and adding server-side tenant, user, and application scoping for a planned platform-wide paid add-on.",
         "Designed and automated a preview-first Stripe and Payrix token migration platform; moved thousands of tokens across 10 tenants using reconciliation, immutable review plans, backups, stale-write protection, monitoring, and human review, with effectively zero customer-visible downtime.",
-        "Guide architecture and operations across a 500+ microservice AWS serverless platform using Lambda, DynamoDB, SNS/SQS, Step Functions, API Gateway, CloudFormation, and CDK.",
+        "Guide architecture and operations for a 3.3M-user AWS platform spanning 7.3K Lambda functions, 620 REST APIs, 29 Angular applications, and 500+ microservices.",
         "Modernized a shared AWS SDK layer from v2 to v3 without forcing consumer rewrites; standardized retries and error handling to improve resilience under throttling and transient failure.",
         "Partner with the CTO, product leaders, and engineering peers on roadmap sequencing, architecture, delivery risk, budget considerations, and operational reliability.",
     ])

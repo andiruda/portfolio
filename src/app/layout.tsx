@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://andiruda.com"),
   title: "Andi Ruda | Engineering Leader & Product Builder",
   description:
-    "Engineering leader and technical player-coach building business-critical SaaS, fintech, analytics, and AWS platforms. Founder of Ruda Works.",
+    "Engineering leader and technical player-coach helping guide a 3.3M-user AWS platform across 7.3K Lambda functions, 620 REST APIs, and 29 Angular applications.",
   keywords: [
     "Andi Ruda",
     "Engineering Manager",

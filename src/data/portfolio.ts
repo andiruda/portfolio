@@ -1,8 +1,8 @@
 export const impactStats = [
-  { value: "15+", label: "years building and leading software" },
-  { value: "500+", label: "microservices in the platform I help guide" },
-  { value: "4", label: "engineers on my current team" },
-  { value: "10", label: "tenants migrated across payment providers" },
+  { value: "3.3M", label: "users on the platform I help lead" },
+  { value: "7.3K", label: "AWS Lambda functions" },
+  { value: "620", label: "REST APIs across the ecosystem" },
+  { value: "29", label: "Angular applications" },
 ];
 
 export const caseStudies = [
@@ -68,7 +68,7 @@ export const experience = [
     role: "Engineering Manager",
     dates: "2025 — Present",
     description:
-      "Lead a four-engineer team across delivery, coaching, performance, technical direction, and cross-functional planning in a 500+ microservice AWS SaaS environment.",
+      "Lead a four-engineer team across delivery, coaching, performance, and technical direction for a platform serving 3.3M users across 7.3K Lambda functions, 620 REST APIs, and 29 Angular applications.",
   },
   {
     company: "Rhythm Software",
