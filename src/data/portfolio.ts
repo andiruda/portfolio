@@ -68,7 +68,7 @@ export const experience = [
     role: "Engineering Manager",
     dates: "2025 — Present",
     description:
-      "Lead a four-engineer team across delivery, coaching, performance, and technical direction for a platform serving 3.3M users across 7.3K Lambda functions, 620 REST APIs, and 29 Angular applications.",
+      "Lead a four-engineer team across delivery, coaching, performance, and technical direction for a 250-tenant platform serving 3.3M users across 7.3K Lambda functions, 620 REST APIs, and 29 Angular applications.",
   },
   {
     company: "Rhythm Software",

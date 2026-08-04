@@ -65,8 +65,8 @@ export default function Hero() {
             <strong>4 engineers</strong>
           </div>
           <div className="hero__annotation hero__annotation--bottom">
-            <span>Building & leading</span>
-            <strong>15+ years</strong>
+            <span>Tenant scale</span>
+            <strong>250 tenants</strong>
           </div>
         </motion.div>
       </div>
