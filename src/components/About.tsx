@@ -1,71 +1,59 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import { experience } from "@/data/portfolio";
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-[#e2e8f0] py-24 bg-[#fafafa]">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.h2 
-          className="text-xs font-medium tracking-widest uppercase text-[#1e40af] mb-2"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-        >
-          Leadership & Platform Strategy
-        </motion.h2>
-        <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <motion.div 
-            className="flex justify-center lg:justify-start"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+    <section id="experience" className="section section--ink">
+      <div className="shell">
+        <div className="section-heading section-heading--light">
+          <p className="eyebrow">Leadership built in the work</p>
+          <h2>Executive judgment. Engineering depth. Product instinct.</h2>
+          <p>
+            My best work happens where the architecture is consequential, the path is
+            ambiguous, and the team needs both clear direction and a leader willing to
+            get close to the implementation.
+          </p>
+        </div>
+
+        <div className="experience-grid">
+          <motion.div
+            className="leadership-note"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
           >
-            <Image
-              src="/andi.png"
-              alt="Andi Ruda"
-              width={260}
-              height={260}
-              className="rounded-lg object-cover w-full max-w-[260px] aspect-square ring-1 ring-[#e2e8f0]"
-            />
-          </motion.div>
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            <p className="text-[#64748b] leading-relaxed">
-              Andi Ruda is a Senior Engineering Leader specializing in large-scale AWS serverless 
-              architecture and distributed systems. As Manager of Software Engineering at Rhythm 
-              Software, he leads teams responsible for a 500+ microservice multi-tenant SaaS 
-              ecosystem operating in event-driven cloud environments.
-            </p>
-            <p className="text-[#64748b] leading-relaxed">
-              He architects and oversees infrastructure built on AWS Lambda, DynamoDB, SNS/SQS, 
-              Step Functions, API Gateway, and Infrastructure as Code. His leadership spans 
-              fintech integrations (Stripe, Payrix), CI/CD platform ownership, operational 
-              reliability, and compliance-sensitive SaaS systems.
-            </p>
-            <p className="text-[#64748b] leading-relaxed">
-              His focus is building engineering teams that deliver scalable systems with 
-              long-term architectural integrity, cost discipline, and operational excellence.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-4">
-              {["Platform Engineering", "Distributed Systems", "Fintech Infrastructure", "Cloud Cost Optimization", "Infrastructure as Code", "Operational Excellence"].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded border border-[#e2e8f0] bg-white px-3 py-1 text-xs text-[#64748b]"
-                >
-                  {tag}
-                </span>
-              ))}
+            <p className="quote-mark" aria-hidden="true">“</p>
+            <blockquote>
+              I build teams that can reason about the whole system—customer value,
+              operational risk, delivery pressure, and the code that connects them.
+            </blockquote>
+            <div className="leadership-principles">
+              <span>Make risk visible</span>
+              <span>Design for ownership</span>
+              <span>Protect the long game</span>
             </div>
           </motion.div>
+
+          <div className="timeline" aria-label="Professional experience">
+            {experience.map((item, index) => (
+              <motion.article
+                key={`${item.company}-${item.role}`}
+                className="timeline__item"
+                initial={{ opacity: 0, x: 18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ delay: index * 0.04 }}
+              >
+                <div className="timeline__marker" aria-hidden="true" />
+                <p className="timeline__dates">{item.dates}</p>
+                <h3>{item.role}</h3>
+                <p className="timeline__company">{item.company}</p>
+                <p className="timeline__description">{item.description}</p>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

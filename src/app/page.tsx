@@ -15,13 +15,13 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <CaseStudies />
         <About />
         <Skills />
-        <CaseStudies />
         <Projects />
         <Contact />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

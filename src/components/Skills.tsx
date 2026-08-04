@@ -1,50 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const focusAreas = [
-  { title: "Platform Engineering", items: ["500+ microservice ecosystems", "Multi-tenant SaaS", "Event-driven architecture"] },
-  { title: "Distributed Systems", items: ["Lambda", "SNS/SQS", "Step Functions", "Reliability engineering"] },
-  { title: "Fintech Infrastructure", items: ["Stripe", "Payrix", "Payment orchestration", "Compliance"] },
-  { title: "Cloud & Infrastructure", items: ["AWS Serverless", "CloudFormation", "CDK", "Cost optimization"] },
-  { title: "Operational Excellence", items: ["CI/CD ownership", "SOC2", "Infrastructure automation"] },
-];
+import { focusAreas } from "@/data/portfolio";
 
 export default function Skills() {
   return (
-    <section id="skills" className="border-t border-[#e2e8f0] py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.h2 
-          className="text-xs font-medium tracking-widest uppercase text-[#1e40af] mb-2"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-        >
-          Strategic Focus Areas
-        </motion.h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {focusAreas.map((area, i) => (
-            <motion.div
+    <section className="section section--soft" aria-labelledby="focus-title">
+      <div className="shell">
+        <div className="section-heading section-heading--split">
+          <div>
+            <p className="eyebrow">How I operate</p>
+            <h2 id="focus-title">Built for the messy middle.</h2>
+          </div>
+          <p>
+            I bridge strategy and implementation: translating high-stakes business needs
+            into systems teams can ship, operate, and improve.
+          </p>
+        </div>
+
+        <div className="focus-grid">
+          {focusAreas.map((area, index) => (
+            <motion.article
               key={area.title}
-              className="border border-[#e2e8f0] bg-white p-6 shadow-sm"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="focus-card"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ delay: index * 0.05 }}
             >
-              <h4 className="font-semibold text-[#0f172a] mb-3 text-sm">
-                {area.title}
-              </h4>
-              <div className="space-y-1">
-                {area.items.map((item) => (
-                  <div key={item} className="text-sm text-[#64748b]">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+              <p className="focus-card__signal">{area.signal}</p>
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+              <span className="focus-card__index">0{index + 1}</span>
+            </motion.article>
           ))}
+        </div>
+
+        <div className="toolkit" aria-label="Technical toolkit">
+          <span>AWS Lambda</span>
+          <span>DynamoDB</span>
+          <span>SNS / SQS</span>
+          <span>Step Functions</span>
+          <span>TypeScript</span>
+          <span>Node.js</span>
+          <span>Angular</span>
+          <span>React</span>
+          <span>CloudFormation</span>
+          <span>CDK</span>
+          <span>Stripe</span>
+          <span>Payrix</span>
         </div>
       </div>
     </section>
